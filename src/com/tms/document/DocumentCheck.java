@@ -1,10 +1,8 @@
 package com.tms.document;
 
-import java.io.PrintWriter;
-
 public class DocumentCheck {
     // Валидный номер документа должен иметь длину 15 символов
-    public static int numberLength15 (String numberOfDoc) {
+    public static boolean numberLength15 (String numberOfDoc) {
         char[] array = numberOfDoc.toCharArray();
         int countChar = 0;
 
@@ -13,16 +11,14 @@ public class DocumentCheck {
         }
 
         if (countChar == 15) {
-            return 0;
-        } else if (countChar > 15){
-            return 101;
+            return true;
         } else {
-            return 102;
+            return false;
         }
     }
 
     // Номером документа является строка, состоящая из букв и цифр (без служебных символов)
-    public static int onlyNumAndLetter (String numberOfDoc) {
+    public static boolean onlyNumAndLetter (String numberOfDoc) {
         char[] array = numberOfDoc.toCharArray();
         int countNotNumOrLetter = 0;
 
@@ -33,18 +29,18 @@ public class DocumentCheck {
         }
 
         if (countNotNumOrLetter == 0) {
-            return 0;
+            return true;
         } else {
-            return 103;
+            return false;
         }
     }
 
     // Проверить начинается ли номер документа с docnum или kontract
-    public static int beginsWithDocnumOrKontract (String numberOfDoc) {
+    public static boolean beginsWithDocnumOrKontract (String numberOfDoc) {
         if (numberOfDoc.startsWith("docnum") || numberOfDoc.startsWith("kontract")) {
-            return 0;
+            return true;
         } else {
-            return 104;
+            return false;
         }
     }
 }

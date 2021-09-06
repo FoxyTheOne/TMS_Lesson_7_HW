@@ -39,24 +39,22 @@ public class Main {
                 System.out.println();
                 System.out.println("Номер документа: " + docNumbers);
                 // Проверяем каждую строку:
-                int check1 = DocumentCheck.numberLength15(docNumbers);
-                int check2 = DocumentCheck.onlyNumAndLetter(docNumbers);
-                int check3 = DocumentCheck.beginsWithDocnumOrKontract(docNumbers);
+                boolean check1 = DocumentCheck.numberLength15(docNumbers);
+                boolean check2 = DocumentCheck.onlyNumAndLetter(docNumbers);
+                boolean check3 = DocumentCheck.beginsWithDocnumOrKontract(docNumbers);
 
-                if (check1 == 0 && check2 == 0 && check3 == 0) {
+                if (check1 && check2 && check3) {
                     fwValid.println(docNumbers); // Вывод строковой информации в файл, с переводом строки
                     System.out.println("Валидный номер документа записан в файл " + pathForValidDocNumber);
                 } else {
                     fwInvalid.println(docNumbers + " - невалидный номер документа:");
-                    if (check1 == 101) {
-                        fwInvalid.println("длина больше 15 символов");
-                    } else if (check1 == 102) {
-                        fwInvalid.println("длина меньше 15 символов");
+                    if (!check1) {
+                        fwInvalid.println("длина не 15 символов");
                     }
-                    if (check2 == 103) {
+                    if (!check2) {
                         fwInvalid.println("номер документа содержит служебные символы");
                     }
-                    if (check3 == 104) {
+                    if (!check3) {
                         fwInvalid.println("номер документа не начинается с docnum или kontract");
                     }
                     fwInvalid.println();
